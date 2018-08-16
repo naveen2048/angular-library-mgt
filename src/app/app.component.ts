@@ -2,6 +2,7 @@ import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
 import { Book } from './models/book.model';
 import { BooksService } from './services/books.service';
 import { TreeviewItem } from 'ngx-treeview';
+import { FilterPipe } from './pipes/filter/filter.pipe';
 
 @Component({
   selector: "app-root",
@@ -13,15 +14,24 @@ export class AppComponent implements OnInit {
   name: string = 'default value';
   selectedBook: Book;
   books: any;
+  allBooks: Book[];
   mydata:TreeviewItem[] = [];
+
+  date: Date;
+  filterText: string;
   
-  constructor(private booksService: BooksService) {}
+  constructor(
+    private booksService: BooksService,
+    private filterPipe: FilterPipe
+  ) {}
 
   ngOnInit() {
+    this.date = new Date('08-08-2018');
     this.booksService.getBooks()
       .subscribe(
         (books: Book[]) => {
           this.books = books;
+          this.allBooks = books;
         }, (err: any) => {
           console.log(err);
         }
@@ -65,5 +75,9 @@ export class AppComponent implements OnInit {
 
   checkName(element : HTMLInputElement) {
     console.log(element.value);
+  }
+
+  filterBooks() {
+    this.books = this.filterPipe.transform(this.allBooks, this.filterText, 'name');
   }
 }

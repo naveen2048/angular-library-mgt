@@ -12,6 +12,8 @@ import { BooksService } from './services/books.service';
 import * as _ from 'lodash';
 import { TreeviewModule } from 'ngx-treeview';
 import { TooltipModule } from 'ngx-tooltip';
+import { ShortenPipe } from './pipes/shorten/shorten.pipe';
+import { FilterPipe } from './pipes/filter/filter.pipe';
 
 @NgModule({
   declarations: [
@@ -19,7 +21,9 @@ import { TooltipModule } from 'ngx-tooltip';
     BookComponent,
     SelectedBookComponent,
     HighlighterDirective,
-    HoverElementDirective
+    HoverElementDirective,
+    ShortenPipe,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,8 @@ import { TooltipModule } from 'ngx-tooltip';
   ],
   providers: [
     BookService,
-    BooksService
+    BooksService,
+    FilterPipe
   ],
   bootstrap: [AppComponent]
 })
