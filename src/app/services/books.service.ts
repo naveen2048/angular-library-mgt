@@ -1,5 +1,5 @@
 import { Book } from '../models/book.model';
-import { BookService } from '../book/book.service';
+//import { BookService } from '../book/book.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
@@ -26,7 +26,7 @@ export class BooksService {
   }]
   constructor(
     private http:HttpClient,
-    private bookService: BookService
+    //private bookService: BookService
   ) { }
 
   // getBooks(): Observable<Book[]> {

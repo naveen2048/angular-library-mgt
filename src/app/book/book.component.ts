@@ -1,7 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
-import { Book } from "../models/book.model";
-import { BookService } from "./book.service";
-import { TreeviewItem } from "ngx-treeview";
+import { Book } from '../models/book.model';
 
 @Component({
   selector: "app-book",
@@ -11,19 +9,12 @@ import { TreeviewItem } from "ngx-treeview";
 export class BookComponent implements OnInit {
   @Input() book: Book;
   @Output() selected: EventEmitter<Book> = new EventEmitter<Book>();
-  mydata:TreeviewItem[] = [];
 
-  constructor(private bookService: BookService) {}
+  constructor() {}
 
-  ngOnInit() {
-
-  }
+  ngOnInit() {}
 
   bookClicked() {
     this.selected.emit(this.book);
   }
-
-  
-
-  
 }
